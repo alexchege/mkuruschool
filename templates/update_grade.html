@@ -1,0 +1,25 @@
+<!-- update_grade.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Grade</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_update_grade.css') }}">
+</head>
+<body>
+    <h1>Update Grade</h1>
+    <form method="POST" action="{{ url_for('grade_management.update_grade', grade_id=grade.id) }}">
+        <label for="student_id">Student ID:</label>
+        <input type="text" id="student_id" name="student_id" value="{{ grade.student_id }}" required>
+
+        <label for="course_code">Course Code:</label>
+        <input type="text" id="course_code" name="course_code" value="{{ grade.course_code }}" required>
+
+        <label for="grade">Grade:</label>
+        <input type="text" id="grade" name="grade" value="{{ grade.grade }}" required>
+
+        <button type="submit">Update Grade</button>
+    </form>
+</body>
+</html>

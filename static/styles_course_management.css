@@ -1,0 +1,74 @@
+/* styles_course_management.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+header {
+    background-color: #007bff;
+    padding: 15px 0;
+}
+
+.navbar-brand {
+    color: #ffffff;
+    font-size: 1.5rem;
+}
+
+.navbar-nav a {
+    color: #007bff;
+    font-size: 1.2rem;
+    margin-right: 15px;
+}
+
+.navbar-nav a:hover {
+    color: #0056b3;
+    transition: color 0.3s ease-in-out; /* Smoother color transition on hover */
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+h2 {
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+    text-align: center;
+}
+
+.btn-primary,
+.btn-danger {
+    transition: background-color 0.3s, border-color 0.3s; /* Smoother transition for button colors */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #c82333;
+}
+
+/* Additional styles for smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+    color: #007bff;
+}

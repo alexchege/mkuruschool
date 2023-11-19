@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif; /* Change font to Open Sans */
+  background-image: url('your_background_image.jpg'); /* Replace with your image URL */
+  background-size: cover;
+  background-color: #222;
+}
+
+/* Position the circular menu at the top-left corner */
+.circular-menu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  transform: translate(0, 0);
+  width: 250px;
+  height: 250px;
+
+
+}
+
+/* Style the menu items */
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #fefafa;
+  margin: 10px;
+  padding: 15px;
+  background-color: #3498db;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Style the menu item icons */
+.menu-item i {
+  font-size: 25px;
+}
+
+/* Style the menu item labels */
+.menu-item span {
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+/* Highlight the active menu item and menu items on hover */
+.menu-item.active,
+.menu-item:hover {
+  background-color: #e74c3c;
+}
+
+/* Style the student display section */
+.student-display {
+  margin-top: 50px; /* Adjust margin depending on the desired spacing */
+  text-align: center;
+  color: #fff;
+  font-family: 'Open Sans', sans-serif; /* Use Open Sans font for student display */
+  padding: 30px; /* Add padding to create a defined area */
+  border-radius: 10px; /* Add subtle border radius for a polished look */
+  background-color: rgba(0, 0, 0, 0.4); /* Add semi-transparent background for contrast */
+}
+
+/* Style the student display heading */
+.student-display h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Style the student list */
+#student-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0; /* Remove default margin to avoid overlapping with the menu */
+}
+
+/* Style the student list items */
+#student-list li {
+  font-size: 16px;
+  margin: 10px 0;
+  padding: 10px 20px; /* Add padding to improve readability */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Add subtle border to separate list items */
+}
+

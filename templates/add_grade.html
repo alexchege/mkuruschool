@@ -1,0 +1,83 @@
+<!-- add_grade.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Grade - Mkurugenzi School</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_add_grade.css') }}"> <!-- Link your custom CSS file -->
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Mkurugenzi School</a>
+            <!-- Add your navigation links here -->
+        </nav>
+    </header>
+
+    <div class="container mt-5">
+        <h2>Add Grade</h2>
+        <form method="post" id="gradeForm">
+            <div class="form-group">
+                <label for="student_id">Student ID</label>
+                <input type="text" name="student_id" id="student_id" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="course_code">Course Code</label>
+                <input type="text" name="course_code" id="course_code" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="grade">Grade</label>
+                <input type="text" name="grade" id="grade" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="semester">Semester</label>
+                <input type="text" name="semester" id="semester" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="year">Year</label>
+                <input type="text" name="year" id="year" class="form-control" required>
+            </div>
+            
+            
+            <button type="submit" class="btn btn-primary">Add Grade</button>
+        </form>
+    </div>
+
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Include your custom JavaScript for form validation -->
+    <script>
+        $(document).ready(function () {
+            $("#gradeForm").submit(function (event) {
+                // Validate form fields
+                if ($("#student_id").val() === "") {
+                    alert("Please enter the student ID.");
+                    $("#student_id").focus();
+                    event.preventDefault();
+                }
+
+                if ($("#course_code").val() === "") {
+                    alert("Please enter the course code.");
+                    $("#course_code").focus();
+                    event.preventDefault();
+                }
+
+                if ($("#grade").val() === "") {
+                    alert("Please enter the grade.");
+                    $("#grade").focus();
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Management - Mkurugenzi School</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_grade_management.css') }}">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{{ url_for('dashboard.dashboard_page') }}">Mkurugenzi School</a>
+            {% if 'loggedin' in session %}
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('home.home_page') }}">Home</a>
+                        </li>
+                        {% if session['role'] == 'admin' %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('student_management.student_management_page') }}">Student
+                                    Management</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('course_management.course_management_page') }}">Course
+                                    Management</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{{ url_for('grade_management.grade_management_page') }}">Grade
+                                    Management</a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('logout.logout_page') }}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            {% endif %}
+        </nav>
+    </header>
+
+    <div class="container mt-5">
+        <h2>Grade Management</h2>
+        <a href="{{ url_for('grade_management.add_grade') }}" class="btn btn-primary mb-2">Add Grade</a>
+    
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Course Code</th>
+                    <th>Grade</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for grade in grades %}
+                    <tr>
+                        <td>{{ grade.student_id }}</td>
+                        <td>{{ grade.course_code }}</td>
+                        <td>{{ grade.grade }}</td>
+                        <td>
+                            <a href="{{ url_for('grade_management.update_grade', grade_id=grade.id) }}"
+                               class="btn btn-warning">Update</a>
+
+                            <form method="post"
+                                  action="{{ url_for('grade_management.delete_grade', grade_id=grade.id) }}"
+                                  style="display: inline;">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+    
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+            <script>
+                // Example: Alert when the document is ready
+                $(document).ready(function () {
+                    alert("Document is ready!");
+                });
+    
+                // Example: Fetch data from an API
+                $.get("/api/data", function (data) {
+                    console.log("Data from API:", data);
+                });
+    
+                // Add more custom JavaScript code as needed
+            </script>
+    
+        </div>
+    </body>
+    
+    </html>
+    

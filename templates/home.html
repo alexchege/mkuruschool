@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mkurugenzi School</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Custom styles -->
+    <style>
+       /* General styles */
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: rgb(222, 211, 150);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+a {
+  color: #007bff;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+/* Header styles */
+header {
+  background-color: #f8f9fa;
+  padding: 20px 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  font-size: 24px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.navbar-nav {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-content: flex-end;
+}
+
+.nav-item {
+  margin: 0 10px;
+}
+
+.nav-link {
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+/* Jumbotron styles */
+.jumbotron {
+  background-color: #f8f9fa;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.display-4 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #3498db;
+}
+
+.lead {
+  font-size: 20px;
+  color: #3498db;
+}
+
+.logo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 20px auto;
+}
+
+/* Container styles */
+.container {
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Button styles */
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{{ url_for('login.login_page') }}">Mkurugenzi School</a>
+            {% if 'loggedin' in session %}
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item {% if request.path == url_for('home.home_page') %}active{% endif %}">
+                            <a class="nav-link" href="{{ url_for('home.home_page') }}">Home</a>
+                        </li>
+                        {% if session['role'] == 'admin' %}
+                            <li class="nav-item {% if request.path == url_for('student_management.student_management_page') %}active{% endif %}">
+                                <a class="nav-link" href="{{ url_for('student_management.student_management_page') }}">Student
+                                    Management</a>
+                            </li>
+                            <li class="nav-item {% if request.path == url_for('course_management.course_management_page') %}active{% endif %}">
+                                <a class="nav-link" href="{{ url_for('course_management.course_management_page') }}">Course
+                                    Management</a>
+                            </li>
+                            <li class="nav-item {% if request.path == url_for('grade_management.grade_management_page') %}active{% endif %}">
+                                <a class="nav-link" href="{{ url_for('grade_management.grade_management_page') }}">Grade
+                                    Management</a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('logout.logout_page') }}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            {% endif %}
+        </nav>
+    </header>
+
+    <div class="container mt-5">
+        <div class="jumbotron text-center">
+            <h1 class="display-4">Mkurugenzi School</h1>
+            {% if 'loggedin' in session %}
+                <p class="lead">{{ greeting_message }}</p>
+                <img src="{{ url_for('static', filename='/images/laptop.jpg') }}" alt="Logo" class="logo">
+            {% else %}
+                <p class="lead">{{ greeting_message }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Your additional JavaScript -->
+    <script>
+        async function displayPageTitle(url) {
+            try {
+                const response = await fetch(url);
+                if (response.ok) {
+                    const html = await response.text();
+                    const titleMatch = html.match(/<title>(.*?)<\/title>/i);
+                    if (titleMatch) {
+                        const pageTitle = titleMatch[1];
+                        document.getElementById('page-title').textContent = pageTitle;
+                    } else {
+                        console.error('Failed to find title in HTML');
+                    }
+                } else {
+                    console.error('Failed to fetch page:', url);
+                }
+            } catch (error) {
+                console.error('Error fetching page:', url, error);
+            }
+        }
+
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+    </script>
+</body>
+
+</html>

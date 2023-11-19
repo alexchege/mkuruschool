@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Mkurugenzi School</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_dashboard.css') }}">
+</head>
+
+<body>
+    <div class="circular-menu">
+        <div class="circular-menu-container">
+          <a href="{{ url_for('home.home_page') }}" class="menu-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+
+          <a href="{{ url_for('logout.logout_page') }}" class="menu-item">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+          </a>
+
+          <a href="{{ url_for('dashboard.dashboard_page') }}" class="menu-item">
+            <i class="fas fa-chart-line"></i>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="{{ url_for('student_management.student_management_page') }}" class="menu-item">
+            <i class="fas fa-users"></i>
+            <span>Student Mgt</span>
+          </a>
+
+          <a href="{{ url_for('course_management.course_management_page') }}" class="menu-item">
+            <i class="fas fa-book"></i>
+            <span>Course Mgt</span>
+          </a>
+
+          <a href="{{ url_for('grade_management.grade_management_page') }}" class="menu-item">
+            <i class="fas fa-clipboard"></i>
+            <span>Grade Mgt</span>
+          </a>
+        </div>
+    </div>
+
+    <div class="student-display">
+        <h2>Recent Students</h2>
+        {% for student in students %}
+        <li>
+          {{ student.first_name }} {{ student.last_name }}- {{ student.major }}
+        </li>
+      {% endfor %}
+      
+    </div>
+
+    <div class="modal" id="student-details-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Student Details</h4>
+                    <button type="button" class="close" id="close-student-details">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <p><strong>Name:</strong> <span id="student-details-name"></span></p>
+                    <p><strong>Major:</strong> <span id="student-details-major"></span></p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="close-student-details">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+add
+    // Add hover effects to menu items
+    const menuItems = document.querySelectorAll('.menu-item');
+
+    for (let menuItem of menuItems) {
+      menuItem.addEventListener('mouseover', (event) => {
+        event.target.classList.add('hover');
+      });
+
+      menuItem.addEventListener('mouseout', (event) => {
+        event.target.classList.remove('hover');
+      });
+    }
+
+    // Add click event to display student details
+    const studentList = document.getElementById('student-list');
+    const studentDetailsModal = document.getElementById('student-details-modal');
+    const studentDetailsName = document.getElementById('student-details-name');
+    const studentDetailsMajor = document.getElementById('student-details-major');
+
+    studentList.addEventListener('click', (event) => {
+      if (event.target.tagName === 'LI') {
+        const studentName = event.target.textContent.split('-')[0].trim();
+        const student = students.find((student) => student.name === studentName);
+
+        studentDetailsName.textContent = student.name;
+        studentDetailsMajor.textContent = student.major;
+
+        studentDetailsModal.classList.add('show');
+      }
+    });
+
+    // Add click event to close student details modal
+    const closeButton = document.getElementById('close-student-details');
+
+    closeButton.addEventListener('click', () => {
+      studentDetailsModal.classList.remove('show');
+    });
+  </script>
+</body>
+
+</html>

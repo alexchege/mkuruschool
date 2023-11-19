@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Mkurugenzi School</title>
+
+    <!-- External styles_register.css file will be linked later -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_register.css') }}">
+</head>
+
+<body>
+    <div class="register-container">
+        <h2>Register for Mkurugenzi School</h2>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                        <div class="flash-message">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        <form method="post" action="{{ url_for('register.register_page') }}">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="password-input-container">
+                    <input type="password" name="password" id="password" class="form-control" required>
+                    <span class="password-toggle" onclick="togglePasswordVisibility()">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                            <path d="M8 1C4 1 1 4 1 8s3 7 7 7 7-3 7-7-3-7-7-7zm0 12c-3.07 0-6-2.239-6-4s2.93-4 6-4 6 2.239 6 4-2.93 4-6 4zm0-7c-1.5 0-2.895.5-4 1.338.105-.89.895-1.338 4-1.338s3.895.448 4 1.338c-1.105-.838-2.5-1.338-4-1.338z"/>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="role">Role</label>
+                <select name="role" id="role" class="form-control">
+                    <option value="student">Student</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+
+        <!-- Link to navigate back to the login page -->
+        <p>Already have an account? <a href="{{ url_for('login.login_page') }}">Login here</a>.</p>
+    </div>
+
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const passwordToggle = document.querySelector('.password-toggle');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                passwordToggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16"><path d="M8 1C4 1 1 4 1 8s3 7 7 7 7-3 7-7-3-7-7-7zm0 12c-3.07 0-6-2.239-6-4s2.93-4 6-4 6 2.239 6 4-2.93 4-6 4zm0-7c-1.5 0-2.895.5-4 1.338.105-.89.895-1.338 4-1.338s3.895.448 4 1.338c-1.105-.838-2.5-1.338-4-1.338z"/></svg>';
+            } else {
+                passwordInput.type = 'password';
+                passwordToggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16"><path d="M8 1C4 1 1 4 1 8s3 7 7 7 7-3 7-7-3-7-7-7zm0 12c-3.07 0-6-2.239-6-4s2.93-4 6-4 6 2.239 6 4-2.93 4-6 4zm0-7c-1.5 0-2.895.5-4 1.338.105-.89.895-1.338 4-1.338s3.895.448 4 1.338c-1.105-.838-2.5-1.338-4-1.338z"/></svg>';
+            }
+        }
+    </script>
+</body>
+
+</html>
