@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Student - Mkurugenzi School</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles_update_student.css') }}">
+
+  <!-- Bootstrap CSS and JavaScript -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Mkurugenzi School</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Dashboard</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Update Student</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Student Management</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <h2>Update Student</h2>
+    <form method="post" id="updateStudentForm">
+      <div class="form-group">
+        <label for="first_name">First Name</label>
+        <input type="text" name="first_name" id="first_name" class="form-control" value="{{ student.first_name }}" required>
+      </div>
+      <div class="form-group">
+        <label for="last_name">Last Name</label>
+        <input type="text" name="last_name" id="last_name" class="form-control" value="{{ student.last_name }}" required>
+      </div>
+      <div class="form-group">
+        <label for="major">Major</label>
+        <input type="text" name="major" id="major" class="form-control" value="{{ student.major }}" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Update Student</button>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('updateStudentForm').addEventListener('submit', function (event) {
+        // Example validation, replace with your logic
+        var firstName = document.getElementById('first_name').value;
+        var lastName = document.getElementById('last_name').value;
+        var major = document.getElementById('major').value;
+
+        if (!firstName || !lastName || !major) {
+          alert('Please fill in all fields.');
+          event.preventDefault();
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
