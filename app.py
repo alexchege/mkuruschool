@@ -14,7 +14,7 @@ def create_app():
     load_dotenv()
 
     # Configure SQLAlchemy
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://chege@chege:kanjurihigh@254@chege.mariadb.database.azure.com:3306//STUDENT_MANAGEMENT'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://chege:kanjurihigh@254@chege.mariadb.database.azure.com:3306/STUDENT_MANAGEMENT'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # Initialize SQLAlchemy after initializing app
