@@ -1,3 +1,4 @@
+# In app.py
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
@@ -6,7 +7,6 @@ from flask_login import LoginManager
 from models import db, User
 from routes import home, login, register, logout, student_management, course_management, grade_management, dashboard
 
-# Function to create and configure the Flask app
 def create_app():
     app = Flask(__name__)
 
@@ -14,7 +14,7 @@ def create_app():
     load_dotenv()
 
     # Configure SQLAlchemy
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://chege:kanjurihigh@254@chege.mariadb.database.azure.com:3306/STUDENT_MANAGEMENT'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://chege:kanjurihigh@254@chege.mariadb.database.azure.com:3306/STUDENT_MANAGEMENT'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # Initialize SQLAlchemy after initializing app
