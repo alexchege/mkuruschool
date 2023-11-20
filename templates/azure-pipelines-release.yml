@@ -1,0 +1,28 @@
+# azure-pipelines-release.yml
+
+trigger:
+  branches:
+    exclude:
+      - '*'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+jobs:
+- deployment: DeployWebApp
+  displayName: 'Deploy to Azure Web App'
+  environment: '<your-environment-name>' # Replace with your environment name
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+        - download: current
+          artifact: drop
+
+        - task: AzureRmWebAppDeployment@4
+          inputs:
+            ConnectionType: 'AzureRM'
+            azureSubscription: '<your-subscription-name>' # Replace with your subscription name
+            appType: 'webAppLinux'
+            WebAppName: '<your-web-app-name>' # Replace with your web app name
+            packageForLinux: '$(Pipeline.Workspace)/drop/app.zip'
