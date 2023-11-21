@@ -4,3 +4,4 @@ Flask_Login==0.6.3
 Flask_Migrate==4.0.5
 flask_sqlalchemy==3.0.3
 python-dotenv==1.0.0
+gunicorn==21.2.0
