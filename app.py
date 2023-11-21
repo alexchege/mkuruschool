@@ -7,7 +7,7 @@ from flask_login import LoginManager
 from models import db, User
 from routes import home, login, register, logout, student_management, course_management, grade_management, dashboard
 
-def create_app():
+def create_app(*args, **kwargs):
     app = Flask(__name__)
 
     # Load environment variables from the .env file
